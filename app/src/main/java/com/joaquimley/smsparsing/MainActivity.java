@@ -20,6 +20,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.joaquimley.smsparsing.sqlite.BankDetail;
 import com.joaquimley.smsparsing.sqlite.BankList;
 
 import java.util.ArrayList;
@@ -94,8 +95,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Uri uriSMSURI = Uri.parse("content://sms/inbox");
         Cursor cur = getContentResolver().query(uriSMSURI, null, null, null, null);
 
-        //inserting Bank lists
         BankList sql_BankList = new BankList(context);
+        BankDetail sql_BankDetail = new BankDetail(context);
+
+        //inserting Bank lists
+
         String bankname = "Axis";
         if (!sql_BankList.isBankExist(bankname)) {
             ContentValues cv = new ContentValues();
