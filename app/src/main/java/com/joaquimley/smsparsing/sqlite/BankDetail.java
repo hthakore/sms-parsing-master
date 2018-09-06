@@ -14,8 +14,8 @@ public class BankDetail {
     public static final String DATE = "date";
     public static final String ISDEBIT = "isdebit";
     public static final String AMOUNT = "amount";
-    public static final String CURRENTBAL = "bankid";
-    public static final String EXPENCENAME = "bankdetail";
+    public static final String CURRENTBAL = "currentbal";
+    public static final String EXPENCENAME = "expencename";
 
 
     public BankDetail(Context context)
