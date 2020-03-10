@@ -23,7 +23,10 @@ import android.widget.Toast;
 import com.joaquimley.smsparsing.sqlite.BankDetail;
 import com.joaquimley.smsparsing.sqlite.BankList;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -113,9 +116,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             String address = cur.getString(cur.getColumnIndex("address"));
             String body = cur.getString(cur.getColumnIndexOrThrow("body"));
             String date = cur.getString(cur.getColumnIndexOrThrow("date"));
+            String currentSpends = "",remaining= "";
             //sms.add("Number: " + address + " .Message: " + body);
             if (address.contains("AX-AxisBk")) {
                 //Log.i("Message", "Number: " + address + " .Message: " + body);
+                int i = 0;
+                DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+
+                long milliSeconds= Long.parseLong(date);
+                System.out.println(milliSeconds);
+
+                Calendar calendar = Calendar.getInstance();
+                calendar.setTimeInMillis(milliSeconds);
+                String newdate = formatter.format(calendar.getTime());
 
                 String isDebited = "";
                 if (address.contains("debited"))
@@ -135,10 +148,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 while (m.find()){
                     String MyAmount = m.group(0);
                     //Log.i("String ",m.toString());
-                    Log.i("Amount ",MyAmount);
+                    if (i==0){
+                        currentSpends = MyAmount;
+                    }else if (i == 1){
+                        remaining = MyAmount;
+                    }
+                    i++;
+                    //Log.e("Amount ",MyAmount);
                     //Log.i("Amount_2 ",m.group(1));
 
                 }
+                Log.e("Amount =","Curr = "+ currentSpends+" Remains = "+remaining);
             }
         }
 

@@ -35,7 +35,7 @@ public class MySQliteHelper extends SQLiteOpenHelper {
 
         String CREATE1_BANKLIST = String.format("CREATE TABLE IF NOT EXISTS %s " +
                         "( %s INTEGER PRIMARY KEY AUTOINCREMENT ," +
-                        " %s TEXT , %s TEXT)",
+                        " %s TEXT)",
                 BankList.TableName,ID,
                 BankList.BANKNAME);
 
